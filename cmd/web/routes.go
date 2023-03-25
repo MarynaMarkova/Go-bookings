@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/MarynaMarkova/GO_HELLO_WORLD/pkg/config"
-	"github.com/MarynaMarkova/GO_HELLO_WORLD/pkg/handlers"
+	"github.com/MarynaMarkova/Go-bookings/pkg/config"
+	"github.com/MarynaMarkova/Go-bookings/pkg/handlers"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 )

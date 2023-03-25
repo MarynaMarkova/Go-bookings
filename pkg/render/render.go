@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/MarynaMarkova/GO_HELLO_WORLD/pkg/config"
-	"github.com/MarynaMarkova/GO_HELLO_WORLD/pkg/models"
+	"github.com/MarynaMarkova/Go-bookings/pkg/config"
+	"github.com/MarynaMarkova/Go-bookings/pkg/models"
 )
 
 // Building a more complex template cache

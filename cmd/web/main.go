@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/MarynaMarkova/GO_HELLO_WORLD/pkg/config"
-	"github.com/MarynaMarkova/GO_HELLO_WORLD/pkg/handlers"
-	"github.com/MarynaMarkova/GO_HELLO_WORLD/pkg/render"
+	"github.com/MarynaMarkova/Go-bookings/pkg/config"
+	"github.com/MarynaMarkova/Go-bookings/pkg/handlers"
+	"github.com/MarynaMarkova/Go-bookings/pkg/render"
 	"github.com/alexedwards/scs/v2"
 )
 

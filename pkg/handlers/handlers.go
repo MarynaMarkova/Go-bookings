@@ -3,9 +3,9 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/MarynaMarkova/GO_HELLO_WORLD/pkg/config"
-	"github.com/MarynaMarkova/GO_HELLO_WORLD/pkg/models"
-	"github.com/MarynaMarkova/GO_HELLO_WORLD/pkg/render"
+	"github.com/MarynaMarkova/Go-bookings/pkg/config"
+	"github.com/MarynaMarkova/Go-bookings/pkg/models"
+	"github.com/MarynaMarkova/Go-bookings/pkg/render"
 )
 
 // Repo the repository used by the handlers
