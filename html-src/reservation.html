@@ -30,6 +30,10 @@
       .room-image {
         max-width: 50%;
       }
+
+      .redText {
+        color: red;
+      }
     </style>
   </head>
 
@@ -98,7 +102,12 @@
         <div class="col-md-6">
           <h1 class="mt-5">Search for Availability</h1>
 
-          <form action="reservation.html" method="get">
+          <form
+            action="reservation.html"
+            method="get"
+            novalidate
+            class="needs-validation"
+          >
             <div class="form-row">
               <div class="col">
                 <div class="mb-3 form-group">
@@ -140,6 +149,17 @@
           </form>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col">
+          <p id="myParagraph">This is some text.</p>
+          <p>
+            <button id="colorButton" class="btn btn-outline-secondary">
+              Click me
+            </button>
+          </p>
+        </div>
+      </div>
     </div>
 
     <footer class="my-footer">
@@ -162,5 +182,43 @@
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
+    <script>
+      console.log("I am prining from javascript");
+
+      (function () {
+        "use strict";
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll(".needs-validation");
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
+
+      document
+        .getElementById("colorButton")
+        .addEventListener("click", function () {
+          let myEl = document.getElementById("myParagraph");
+
+          if (myEl.classList.contains("redText")) {
+            myEl.classList.remove("redText");
+          } else {
+            myEl.classList.add("redText");
+          }
+        });
+    </script>
   </body>
 </html>
