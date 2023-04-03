@@ -185,8 +185,7 @@
     <script src="https://unpkg.com/notie"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-      console.log("I am prining from javascript");
-
+      let attention = Prompt();
       (function () {
         "use strict";
 
@@ -214,12 +213,14 @@
         .getElementById("colorButton")
         .addEventListener("click", function () {
           // notify("This is my message", "warning");
-          notifyModal(
-            "title",
-            "<em>hello, world</em>",
-            "success",
-            "My Text for the Button"
-          );
+          // notifyModal(
+          //   "title",
+          //   "<em>hello, world</em>",
+          //   "success",
+          //   "My Text for the Button"
+          // );
+
+          attention.success();
         });
 
       const elem = document.getElementById("reservation-dates");
@@ -241,6 +242,19 @@
           icon: icon,
           confirmButtonText: confirmButtonText,
         });
+      }
+
+      function Prompt() {
+        let toast = function () {
+          console.log("clicked button and got toast.");
+        };
+        let success = function () {
+          console.log("clicked button and got success.");
+        };
+        return {
+          toast: toast,
+          success: success,
+        };
       }
     </script>
   </body>
