@@ -9,15 +9,16 @@
           <h1 class="mt-5">Search for Availability</h1>
 
           <form
-            action=""
-            method="get"
+            action="/search-availability"
+            method="post"
             novalidate
             class="needs-validation"
             autocomplete="off"
           >
-            <div class="form-row">
+          <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+            <div class="row">
               <div class="col">
-                <div class="form-row" id="reservation-dates">
+                <div class="row" id="reservation-dates">
                   <div class="col">
                     <input
                       required
@@ -42,8 +43,7 @@
 
             <hr />
 
-            <button type="submit" class="btn btn-primary">
-              Search Availability
+            <button type="submit" class="btn btn-primary">Search Availability
             </button>
           </form>
         </div>
