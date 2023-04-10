@@ -1,59 +1,59 @@
-{{template "base" .}}
+{{ template "base" . }}
 
-{{define "content"}}
- 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col">
-          <img
-            src="/static/images/generals-quarters.png"
-            class="img-fluid img-thumbnail mx-auto d-block room-image"
-            alt="room image"
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <h1 class="text-center mt-4">General's Quarters</h1>
-          <p>
-            Your home away from home, set on the majestic waters of the Atlantic
-            Ocean, this will be a vacation to remember. Your home away from
-            home, set on the majestic waters of the Atlantic Ocean, this will be
-            a vacation to remember. Your home away from home, set on the
-            majestic waters of the Atlantic Ocean, this will be a vacation to
-            remember. Your home away from home, set on the majestic waters of
-            the Atlantic Ocean, this will be a vacation to remember. Your home
-            away from home, set on the majestic waters of the Atlantic Ocean,
-            this will be a vacation to remember. Your home away from home, set
-            on the majestic waters of the Atlantic Ocean, this will be a
-            vacation to remember.
-          </p>
-        </div>
-      </div>
+{{ define "content" }}
 
-      <div class="row">
-        <div class="col text-center">
-          <a id="check-availability-button" href="#!" class="btn btn-success"
-            >Check Availability</a
-          >
-        </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <img
+          src="/static/images/generals-quarters.png"
+          class="img-fluid img-thumbnail mx-auto d-block room-image"
+          alt="room image"
+        />
       </div>
     </div>
-{{end}}
+    <div class="row">
+      <div class="col">
+        <h1 class="text-center mt-4">General's Quarters</h1>
+        <p>
+          Your home away from home, set on the majestic waters of the Atlantic
+          Ocean, this will be a vacation to remember. Your home away from home,
+          set on the majestic waters of the Atlantic Ocean, this will be a
+          vacation to remember. Your home away from home, set on the majestic
+          waters of the Atlantic Ocean, this will be a vacation to remember.
+          Your home away from home, set on the majestic waters of the Atlantic
+          Ocean, this will be a vacation to remember. Your home away from home,
+          set on the majestic waters of the Atlantic Ocean, this will be a
+          vacation to remember. Your home away from home, set on the majestic
+          waters of the Atlantic Ocean, this will be a vacation to remember.
+        </p>
+      </div>
+    </div>
 
-{{define "js"}}
-    <script> document
-        .getElementById("check-availability-button")
-        .addEventListener("click", function () {
-          // notify("This is my message", "warning");
-          // notifyModal(
-          //   "title",
-          //   "<em>hello, world</em>",
-          //   "success",
-          //   "My Text for the Button"
-          // );
+    <div class="row">
+      <div class="col text-center">
+        <a id="check-availability-button" href="#!" class="btn btn-success"
+          >Check Availability</a
+        >
+      </div>
+    </div>
+  </div>
+{{ end }}
 
-          let html = `
+{{ define "js" }}
+  <script>
+    document
+      .getElementById("check-availability-button")
+      .addEventListener("click", function () {
+        // notify("This is my message", "warning");
+        // notifyModal(
+        //   "title",
+        //   "<em>hello, world</em>",
+        //   "success",
+        //   "My Text for the Button"
+        // );
+
+        let html = `
                   <form
                     id="check-availability-form"
                     action=""
@@ -93,9 +93,22 @@
                     </div>
                   </form>
                 `;
-          attention.custom({
-            title: "Choose your dates",
-            msg: html,
-          });
-        });</script>
-{{end}}
+
+        attention.custom({
+          msg: html,
+          title: "Choose your dates",
+          callback: function (result) {
+            console.log("called");
+
+            fetch("/search-availability-json")
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data);
+                console.log(data.ok);
+                console.log(data.message);
+              });
+          },
+        });
+      });
+  </script>
+{{ end }}
