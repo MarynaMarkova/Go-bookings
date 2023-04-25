@@ -1,0 +1,22 @@
+mode: set
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:24.47,28.2 1 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:31.33,33.2 1 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:36.67,41.2 3 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:44.68,56.2 5 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:59.74,68.2 4 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:71.78,73.16 2 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:73.16,76.3 2 0
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:78.2,92.19 6 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:92.19,101.3 4 0
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:102.2,104.66 2 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:108.71,110.2 1 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:113.69,115.2 1 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:118.75,120.2 1 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:123.79,128.2 3 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:136.79,143.16 3 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:143.16,145.3 1 0
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:147.2,148.14 2 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:152.70,154.2 1 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:156.80,158.9 2 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:158.9,163.3 4 1
+github.com/MarynaMarkova/Go-bookings/internal/handlers/handlers.go:165.2,171.4 4 0
