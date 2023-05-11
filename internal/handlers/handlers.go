@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
+	"time"
 
 	"github.com/MarynaMarkova/Go-bookings/internal/config"
 	"github.com/MarynaMarkova/Go-bookings/internal/driver"
@@ -68,11 +70,34 @@ func (m *Repository) PostReservation(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	sd := r.Form.Get("start_date")
+	ed := r.Form.Get("end_date")
+
+	// 2020-01-01 -- 01/02 03:04:05PM '06 -0700
+
+	layout := "2006-01-02"
+	startDate, err := time.Parse(layout, sd)
+	if err != nil {
+		helpers.ServerError(w, err)
+	}
+	endDate, err := time.Parse(layout, ed)
+	if err != nil {
+		helpers.ServerError(w, err)
+	}
+
+	roomID, err := strconv.Atoi(r.Form.Get("room_id"))
+	if err != nil {
+		helpers.ServerError(w, err)
+	}
+
 	reservation := models.Reservation {
 		FirstName: 	r.Form.Get("first_name"),
 		LastName: 	r.Form.Get("last_name"),
 		Phone: 		r.Form.Get("phone"),
 		Email: 		r.Form.Get("email"),
+		StartDate: 	startDate,
+		EndDate: 	endDate,	
+		RoomID: 	roomID,
 	}
 
 	form := forms.New(r.PostForm)
@@ -92,6 +117,12 @@ func (m *Repository) PostReservation(w http.ResponseWriter, r *http.Request) {
 		})
 	return
 	}
+
+	err = m.DB.InsertReservation(reservation)
+	if err != nil {
+		helpers.ServerError(w, err)
+	}
+
 	m.App.Session.Put(r.Context(), "reservation", reservation)
 
 	http.Redirect(w, r, "/reservation-summary", http.StatusSeeOther)
