@@ -15,10 +15,10 @@ import (
 	"github.com/MarynaMarkova/Go-bookings/internal/models"
 )
 
-type postData struct {
-	key   string
-	value string
-}
+// type postData struct {
+// 	key   string
+// 	value string
+// }
 
 var theTests = []struct {
 	name               string
@@ -111,7 +111,6 @@ func TestRepository_Reservation(t *testing.T) {
 
 }
 
-/////////////////!!!!!!!!!!!Test failed!
 func TestRepository_PostReservation(t *testing.T) {
 	reqBody := "start_date=2050-01-01"
 	reqBody = fmt.Sprintf("%s&%s", reqBody, "end_date=2050-01-02")
@@ -300,7 +299,6 @@ func TestNewRepo(t *testing.T) {
 	}
 }
 
-////////////// Test failed!
 func TestRepository_PostAvailability(t *testing.T) {
 		/*****************************************
 	// first case -- rooms are not available
@@ -519,7 +517,7 @@ func TestRepository_AvailabilityJSON(t *testing.T) {
 	// since we have no rooms available, we expect to get status http.StatusSeeOther
 	// this time we want to parse JSON and get the expected response
 	var j jsonResponse
-	err := json.Unmarshal([]byte(rr.Body.String()), &j)
+	err := json.Unmarshal(rr.Body.Bytes(), &j)
 	if err != nil {
 		t.Error("failed to parse json!")
 	}
@@ -558,7 +556,7 @@ func TestRepository_AvailabilityJSON(t *testing.T) {
 	handler.ServeHTTP(rr, req)
 
 	// this time we want to parse JSON and get the expected response
-	err = json.Unmarshal([]byte(rr.Body.String()), &j)
+	err = json.Unmarshal(rr.Body.Bytes(), &j)
 	if err != nil {
 		t.Error("failed to parse json!")
 	}
@@ -592,7 +590,7 @@ func TestRepository_AvailabilityJSON(t *testing.T) {
 	handler.ServeHTTP(rr, req)
 
 	// this time we want to parse JSON and get the expected response
-	err = json.Unmarshal([]byte(rr.Body.String()), &j)
+	err = json.Unmarshal(rr.Body.Bytes(), &j)
 	if err != nil {
 		t.Error("failed to parse json!")
 	}
@@ -630,7 +628,7 @@ func TestRepository_AvailabilityJSON(t *testing.T) {
 	handler.ServeHTTP(rr, req)
 
 	// this time we want to parse JSON and get the expected response
-	err = json.Unmarshal([]byte(rr.Body.String()), &j)
+	err = json.Unmarshal(rr.Body.Bytes(), &j)
 	if err != nil {
 		t.Error("failed to parse json!")
 	}

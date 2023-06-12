@@ -25,7 +25,7 @@ var session *scs.SessionManager
 var pathToTemplates = "./../../templates"
 var functions = template.FuncMap{}
 
-func TestMain(m *testing.M){
+func TestMain(m *testing.M) {
 	gob.Register(models.Reservation{})
 
 	// change this to true when in production
@@ -62,12 +62,10 @@ func TestMain(m *testing.M){
 }
 
 func getRoutes() http.Handler {
-	
-
 	mux := chi.NewRouter()
 
 	mux.Use(middleware.Recoverer)
-	// mux.Use(NoSurf)
+	//mux.Use(NoSurf)
 	mux.Use(SessionLoad)
 	
 	mux.Get("/", Repo.Home)
@@ -78,6 +76,7 @@ func getRoutes() http.Handler {
 	mux.Get("/search-availability", Repo.Availability)
 	mux.Post("/search-availability", Repo.PostAvailability)
 	mux.Post("/search-availability-json", Repo.AvailabilityJSON)
+
 	mux.Get("/contact", Repo.Contact)
 
 	mux.Get("/make-reservation", Repo.Reservation)
@@ -86,22 +85,24 @@ func getRoutes() http.Handler {
 
 	fileServer := http.FileServer(http.Dir("./static/"))
 	mux.Handle("/static/*", http.StripPrefix("/static", fileServer))
+
 	return mux
 }
 
+// NoSurf adds CSRF protection to all POST requests
 func NoSurf(next http.Handler) http.Handler {
 	csrfHandler := nosurf.New(next)
 
 	csrfHandler.SetBaseCookie(http.Cookie{
 		HttpOnly: true,
-		Path: "/",
-		Secure: app.InProduction,
+		Path:     "/",
+		Secure:   app.InProduction,
 		SameSite: http.SameSiteLaxMode,
 	})
 	return csrfHandler
 }
 
-// SessionLoad loads and saves the session data for current request
+// SessionLoad loads and saves the session on every request
 func SessionLoad(next http.Handler) http.Handler {
 	return session.LoadAndSave(next)
 }
