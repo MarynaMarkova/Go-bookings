@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/smtp"
 	"os"
 	"time"
 
@@ -30,6 +31,13 @@ func main() {
 		log.Fatal(err)
 	}
 	defer db.SQL.Close()
+
+	from := "me@here.com"
+	auth := smtp.PlainAuth("", from, "", "localhost")
+	err = smtp.SendMail("localhost:1025", auth, from, []string{"you@there.com"}, []byte("Hello, world"))
+	if err != nil {
+		log.Print(err)
+	}
 
 	fmt.Println(fmt.Sprintf("Starting application on port %s", portNumber))
 	
@@ -71,7 +79,7 @@ func run() (*driver.DB, error) {
 
 	// connect to database
 	log.Println("Connecting to database...")
-	db, err := driver.ConnectSQL(`host=localhost port=5432 dbname=bookings user=postgres password=`)
+	db, err := driver.ConnectSQL(`host=localhost port=5432 dbname=bookings user=postgres password=free23lancer`)
 	// database.yml password
 	if err !=nil {
 		log.Fatal("Cannot connect to database! Dying...")
