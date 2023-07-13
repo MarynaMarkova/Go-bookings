@@ -78,7 +78,7 @@
       </div>
 
       <div class="form-group">
-        <label for="phone">Phone number:</label>
+        <label for="phone">Phone:</label>
         {{ with .Form.Errors.Get "phone" }}
           <label class="text-danger">{{ . }}</label>
         {{ end }}
@@ -94,14 +94,24 @@
           autocomplete="off"
         />
       </div>
+
       <hr />
-      <input type="submit" class="btn btn-primary" value="Save" />
-      <a href="/admin/reservations-{{ $src }}" class="btn btn-warning"
-        >Cancel</a
-      >
-      <a href="#!" class="btn btn-info" onclick="processRes({{ $res.ID }})"
-        >Mark as Processed</a
-      >
+      <span class="float-start">
+        <input type="submit" class="btn btn-primary" value="Save" />
+        <a href="/admin/reservations-{{ $src }}" class="btn btn-warning"
+          >Cancel</a
+        >
+        <a href="#!" class="btn btn-info" onclick="processRes({{ $res.ID }})"
+          >Mark as Processed</a
+        >
+      </span>
+
+      <span class="float-end">
+        <a href="#!" class="btn btn-danger" onclick="deleteRes({{ $res.ID }})"
+          >Delete</a
+        >
+      </span>
+      <div class="clearfix"></div>
     </form>
   </div>
 {{ end }}
@@ -116,6 +126,18 @@
         callback: function (result) {
           if (result !== false) {
             window.location.href = "/admin/process-reservation/{{$src}}/" + id;
+          }
+        },
+      });
+    }
+
+    function deleteRes(id){
+      attention.custom({
+        icon: "warning",
+        msg: "Are you sure?",
+        callback: function (result) {
+          if (result !== false) {
+            window.location.href = "/admin/delete-reservation/{{$src}}/" + id;
           }
         },
       });
