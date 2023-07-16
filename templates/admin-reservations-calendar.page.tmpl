@@ -13,6 +13,8 @@
         {{ formatDate $now "January" }}
         {{ formatDate $now "2006" }}
         {{ $dim :=index .IntMap "days_in_month" }}
+        {{ $curMonth := index .StringMap "this_month" }}
+        {{ $curYear := index .StringMap "this_month_year" }}
       </div>
     </h3>
 
