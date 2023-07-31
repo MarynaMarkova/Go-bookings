@@ -2,7 +2,6 @@ package render
 
 import (
 	"encoding/gob"
-	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -14,35 +13,22 @@ import (
 	"github.com/alexedwards/scs/v2"
 )
 
-var app config.AppConfig
+var testApp config.AppConfig
 var session *scs.SessionManager
-var pathToTemplates = "./../../templates"
-
-var functions = template.FuncMap{
-	"humanDate": render.HumanDate,
-	"formatDate": render.FormatDate,
-	"iterate": render.Iterate,
-	"add": render.Add,
-}
 
 func TestMain(m *testing.M){
 
 	// what am I going to put in the session
 	gob.Register(models.Reservation{})
-	gob.Register(models.User{})
-	gob.Register(models.Room{})
-	gob.Register(models.Restriction{})
-	gob.Register(map[string]int{})
-
-
+	
 	// change this to true when in production
-	app.InProduction = false
+	testApp.InProduction = false
 
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
-	app.InfoLog = infoLog
+	testApp.InfoLog = infoLog
 
 	errorLog := log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
-	app.ErrorLog = errorLog 
+	testApp.ErrorLog = errorLog 
 
 	// set up the session
 	session = scs.New()
