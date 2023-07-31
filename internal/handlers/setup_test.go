@@ -25,10 +25,10 @@ var session *scs.SessionManager
 var pathToTemplates = "./../../templates"
 
 var functions = template.FuncMap{
-	"humanDate": render.HumanDate,
-	"formatDate": render.FormatDate,
-	"iterate": render.Iterate,
-	"add": render.Add,
+	"humanDate": 	render.HumanDate,
+	"formatDate": 	render.FormatDate,
+	"iterate": 		render.Iterate,
+	"add": 			render.Add,
 }
 
 func TestMain(m *testing.M) {
@@ -66,7 +66,7 @@ func TestMain(m *testing.M) {
 	tc, err := CreateTestTemplateCache()
 	if err != nil {
 		log.Fatal("cannot create template cache", err)
-		return 
+		
 	}
 
 	app.TemplateCache = tc
@@ -166,17 +166,20 @@ func CreateTestTemplateCache() (map[string]*template.Template, error) {
 		name := filepath.Base(page)
 		ts, err := template.New(name).Funcs(functions).ParseFiles(page)
 		if err != nil {
+			log.Println(err)
 			return myCache, err
 	}
 
 	matches, err := filepath.Glob(fmt.Sprintf("%s/*.layout.tmpl", pathToTemplates))
 	if err != nil {
+			log.Println(err)
 			return myCache, err
 	}
 
 	if len(matches) > 0 {
 		ts, err = ts.ParseGlob(fmt.Sprintf("%s/*.layout.tmpl", pathToTemplates))
 		if err != nil {
+			log.Println(err)
 			return myCache, err
 		}
 	}
