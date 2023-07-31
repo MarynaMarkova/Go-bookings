@@ -37,8 +37,6 @@ func TestMain(m *testing.M){
 	session.Cookie.SameSite = http.SameSiteLaxMode
 	session.Cookie.Secure = false
 
-	app.Session = session
-
 	app = &testApp
 
 	os.Exit(m.Run())
