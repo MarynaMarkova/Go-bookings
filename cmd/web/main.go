@@ -26,7 +26,12 @@ var infoLog *log.Logger
 var errorLog *log.Logger
 
 // main is the main application function
-func main() {
+func main() {	
+	err := godotenv.Load()
+  	if err != nil {
+    log.Fatal("Error loading .env file")
+  	}
+
 	db, err := run()
 	if err != nil {
 		log.Fatal(err)
@@ -38,10 +43,6 @@ func main() {
 	fmt.Println("Starting mail listener...")
 	listenForMail()
 
-	err = godotenv.Load()
-  	if err != nil {
-    log.Fatal("Error loading .env file")
-  	}
 
 	from := "me@here.com"
 	auth := smtp.PlainAuth("", from, "", "localhost")
